@@ -5,6 +5,8 @@ VisualStudioVersion = 17.0.32112.339
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "Cumpuss.Database", "Cumpuss.Database\Cumpuss.Database.sqlproj", "{9BBE11E3-C570-4D9C-A1C1-B6AE4B110393}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cumpuss.Infrastructure", "Cumpuss.Infrastructure\Cumpuss.Infrastructure.csproj", "{F67B6E68-C134-479D-BCBC-274EAAE4BEA9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -17,6 +19,10 @@ Global
 		{9BBE11E3-C570-4D9C-A1C1-B6AE4B110393}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9BBE11E3-C570-4D9C-A1C1-B6AE4B110393}.Release|Any CPU.Build.0 = Release|Any CPU
 		{9BBE11E3-C570-4D9C-A1C1-B6AE4B110393}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{F67B6E68-C134-479D-BCBC-274EAAE4BEA9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F67B6E68-C134-479D-BCBC-274EAAE4BEA9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F67B6E68-C134-479D-BCBC-274EAAE4BEA9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F67B6E68-C134-479D-BCBC-274EAAE4BEA9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -12,6 +12,7 @@ namespace Cumpuss.Infrastructure
 
         public virtual DbSet<Class> Classes { get; set; }
         public virtual DbSet<Course> Courses { get; set; }
+        public virtual DbSet<Subject> Subjects { get; set; }
         public virtual DbSet<Grade> Grades { get; set; }
         public virtual DbSet<Group> Groups { get; set; }
         public virtual DbSet<GroupsToCourse> GroupsToCourses { get; set; }
@@ -36,7 +37,7 @@ namespace Cumpuss.Infrastructure
 
             modelBuilder.Entity<Class>(entity =>
             {
-                entity.Property(e => e.Id).ValueGeneratedNever();
+                entity.Property(e => e.Id).ValueGeneratedOnAdd();
 
                 entity.Property(e => e.Date).HasColumnType("date");
 
@@ -49,12 +50,39 @@ namespace Cumpuss.Infrastructure
 
             modelBuilder.Entity<Course>(entity =>
             {
-                entity.Property(e => e.Id).ValueGeneratedNever();
+                entity.Property(e => e.Id).ValueGeneratedOnAdd();
+
+                entity.Property(e => e.YearSemester);
+
+                entity.HasOne(d => d.Subject)
+                    .WithMany(p => p.Courses)
+                    .HasForeignKey(d => d.SubjectId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Courses_ToSubjects");
+
+                entity.HasOne(d => d.Lecturer)
+                    .WithMany(p => p.CoursesAsLecturer)
+                    .HasForeignKey(d => d.LecturerId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Courses_ToTeachers_Lecturer");
+
+                entity.HasOne(d => d.PracticeTeacher)
+                    .WithMany(p => p.CoursesAsPracticeTeacher)
+                    .HasForeignKey(d => d.PracticeTeacherId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Courses_ToTeachers_PracticeTeacher");
+            });
+
+            modelBuilder.Entity<Subject>(entity =>
+            {
+                entity.Property(e => e.Id).ValueGeneratedOnAdd();
+
+                entity.Property(e => e.Name).HasMaxLength(300);
             });
 
             modelBuilder.Entity<Grade>(entity =>
             {
-                entity.Property(e => e.Id).ValueGeneratedNever();
+                entity.Property(e => e.Id).ValueGeneratedOnAdd();
 
                 entity.HasOne(d => d.Class)
                     .WithMany(p => p.Grades)
@@ -71,7 +99,7 @@ namespace Cumpuss.Infrastructure
 
             modelBuilder.Entity<Group>(entity =>
             {
-                entity.Property(e => e.Id).ValueGeneratedNever();
+                entity.Property(e => e.Id).ValueGeneratedOnAdd();
 
                 entity.Property(e => e.Name).HasMaxLength(15);
             });
@@ -96,7 +124,7 @@ namespace Cumpuss.Infrastructure
 
             modelBuilder.Entity<Person>(entity =>
             {
-                entity.Property(e => e.Id).ValueGeneratedNever();
+                entity.Property(e => e.Id).ValueGeneratedOnAdd();
 
                 entity.Property(e => e.Name).HasMaxLength(20);
 
@@ -109,7 +137,7 @@ namespace Cumpuss.Infrastructure
 
             modelBuilder.Entity<Student>(entity =>
             {
-                entity.Property(e => e.Id).ValueGeneratedNever();
+                entity.Property(e => e.Id).ValueGeneratedOnAdd();
 
                 entity.HasOne(d => d.Group)
                     .WithMany(p => p.Students)
@@ -144,7 +172,7 @@ namespace Cumpuss.Infrastructure
 
             modelBuilder.Entity<Teacher>(entity =>
             {
-                entity.Property(e => e.Id).ValueGeneratedNever();
+                entity.Property(e => e.Id).ValueGeneratedOnAdd();
 
                 entity.HasOne(d => d.Person)
                     .WithMany(p => p.Teachers)
@@ -155,7 +183,7 @@ namespace Cumpuss.Infrastructure
 
             modelBuilder.Entity<User>(entity =>
             {
-                entity.Property(e => e.Id).ValueGeneratedNever();
+                entity.Property(e => e.Id).ValueGeneratedOnAdd();
 
                 entity.Property(e => e.Login)
                     .IsRequired()

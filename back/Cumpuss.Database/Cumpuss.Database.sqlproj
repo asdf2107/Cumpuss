@@ -69,5 +69,6 @@
     <Build Include="dbo\StudentsToCourses.sql" />
     <Build Include="dbo\Teachers.sql" />
     <Build Include="dbo\Users.sql" />
+    <Build Include="dbo\Subjects.sql" />
   </ItemGroup>
 </Project>

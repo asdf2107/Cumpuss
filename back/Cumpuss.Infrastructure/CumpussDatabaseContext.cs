@@ -37,7 +37,7 @@ namespace Cumpuss.Infrastructure
 
             modelBuilder.Entity<Class>(entity =>
             {
-                entity.Property(e => e.Id).ValueGeneratedOnAdd();
+                entity.HasKey(e => e.Id);
 
                 entity.Property(e => e.Date).HasColumnType("date");
 
@@ -50,9 +50,7 @@ namespace Cumpuss.Infrastructure
 
             modelBuilder.Entity<Course>(entity =>
             {
-                entity.Property(e => e.Id).ValueGeneratedOnAdd();
-
-                entity.Property(e => e.YearSemester);
+                entity.HasKey(e => e.Id);
 
                 entity.HasOne(d => d.Subject)
                     .WithMany(p => p.Courses)
@@ -75,14 +73,14 @@ namespace Cumpuss.Infrastructure
 
             modelBuilder.Entity<Subject>(entity =>
             {
-                entity.Property(e => e.Id).ValueGeneratedOnAdd();
+                entity.HasKey(e => e.Id);
 
                 entity.Property(e => e.Name).HasMaxLength(300);
             });
 
             modelBuilder.Entity<Grade>(entity =>
             {
-                entity.Property(e => e.Id).ValueGeneratedOnAdd();
+                entity.HasKey(e => e.Id);
 
                 entity.HasOne(d => d.Class)
                     .WithMany(p => p.Grades)
@@ -99,7 +97,7 @@ namespace Cumpuss.Infrastructure
 
             modelBuilder.Entity<Group>(entity =>
             {
-                entity.Property(e => e.Id).ValueGeneratedOnAdd();
+                entity.HasKey(e => e.Id);
 
                 entity.Property(e => e.Name).HasMaxLength(15);
             });
@@ -124,7 +122,7 @@ namespace Cumpuss.Infrastructure
 
             modelBuilder.Entity<Person>(entity =>
             {
-                entity.Property(e => e.Id).ValueGeneratedOnAdd();
+                entity.HasKey(e => e.Id);
 
                 entity.Property(e => e.Name).HasMaxLength(20);
 
@@ -137,7 +135,7 @@ namespace Cumpuss.Infrastructure
 
             modelBuilder.Entity<Student>(entity =>
             {
-                entity.Property(e => e.Id).ValueGeneratedOnAdd();
+                entity.HasKey(e => e.Id);
 
                 entity.HasOne(d => d.Group)
                     .WithMany(p => p.Students)
@@ -172,7 +170,7 @@ namespace Cumpuss.Infrastructure
 
             modelBuilder.Entity<Teacher>(entity =>
             {
-                entity.Property(e => e.Id).ValueGeneratedOnAdd();
+                entity.HasKey(e => e.Id);
 
                 entity.HasOne(d => d.Person)
                     .WithMany(p => p.Teachers)
@@ -183,12 +181,15 @@ namespace Cumpuss.Infrastructure
 
             modelBuilder.Entity<User>(entity =>
             {
-                entity.Property(e => e.Id).ValueGeneratedOnAdd();
+                entity.HasKey(e => e.Id);
 
                 entity.Property(e => e.Login)
                     .IsRequired()
                     .HasMaxLength(20)
                     .IsFixedLength(true);
+
+                entity.HasIndex(e => e.Login)
+                    .IsUnique();
 
                 entity.Property(e => e.PasswordHash)
                     .IsRequired()

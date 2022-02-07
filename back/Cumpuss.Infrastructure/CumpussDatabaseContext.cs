@@ -128,6 +128,8 @@ namespace Cumpuss.Infrastructure
 
                 entity.Property(e => e.Patronymic).HasMaxLength(30);
 
+                entity.Property(e => e.Email).HasMaxLength(100);
+
                 entity.Property(e => e.Sirname)
                     .IsRequired()
                     .HasMaxLength(30);

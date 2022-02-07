@@ -13,7 +13,7 @@ namespace Cumpuss.Infrastructure.Models
         public int Id { get; set; }
         public int CourseId { get; set; }
         public DateTime Date { get; set; }
-        public short ClassType { get; set; }
+        public int ClassType { get; set; }
         public string CustomCaption { get; set; }
 
         public virtual Course Course { get; set; }

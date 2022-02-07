@@ -15,6 +15,7 @@ namespace Cumpuss.Infrastructure.Models
         public string Name { get; set; }
         public string Sirname { get; set; }
         public string Patronymic { get; set; }
+        public string Email { get; set; }
 
         public virtual ICollection<Student> Students { get; set; }
         public virtual ICollection<Teacher> Teachers { get; set; }

@@ -1,11 +1,15 @@
 ﻿using Cumpuss.Infrastructure.Models;
 using Microsoft.EntityFrameworkCore;
+using System;
 
 namespace Cumpuss.Infrastructure
 {
     public partial class CumpussDatabaseContext : DbContext
     {
-        public CumpussDatabaseContext() { }
+        public static bool InMemoryMode = false;
+
+        public CumpussDatabaseContext()
+            : base(InMemoryMode ? throw new NotImplementedException() : new DbContextOptions<CumpussDatabaseContext>()) { }
 
         public CumpussDatabaseContext(DbContextOptions<CumpussDatabaseContext> options)
             : base(options) { }

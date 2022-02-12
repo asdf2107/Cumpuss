@@ -4,14 +4,14 @@ using System;
 
 namespace Cumpuss.Infrastructure
 {
-    public partial class CumpussDatabaseContext : DbContext
+    public partial class CumpussDBContext : DbContext
     {
         public static bool InMemoryMode = false;
 
-        public CumpussDatabaseContext()
-            : base(InMemoryMode ? throw new NotImplementedException() : new DbContextOptions<CumpussDatabaseContext>()) { }
+        public CumpussDBContext()
+            : base(InMemoryMode ? throw new NotImplementedException() : new DbContextOptions<CumpussDBContext>()) { }
 
-        public CumpussDatabaseContext(DbContextOptions<CumpussDatabaseContext> options)
+        public CumpussDBContext(DbContextOptions<CumpussDBContext> options)
             : base(options) { }
 
         public virtual DbSet<Class> Classes { get; set; }

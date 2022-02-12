@@ -61,7 +61,7 @@
   <ItemGroup>
     <Build Include="dbo\Classes.sql" />
     <Build Include="dbo\Courses.sql" />
-    <Build Include="dbo\Marks.sql" />
+    <Build Include="dbo\Grades.sql" />
     <Build Include="dbo\Groups.sql" />
     <Build Include="dbo\GroupsToCourses.sql" />
     <Build Include="dbo\Persons.sql" />

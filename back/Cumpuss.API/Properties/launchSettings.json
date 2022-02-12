@@ -9,7 +9,7 @@
     }
   },
   "profiles": {
-    "Cumpuss.Presentation": {
+    "Cumpuss.API": {
       "commandName": "Project",
       "dotnetRunMessages": true,
       "launchBrowser": true,

@@ -4,11 +4,11 @@ using System.Collections.Generic;
 
 namespace Cumpuss.Domain.Models
 {
-    public interface IClass
+    public interface IClass : IEntity
     {
-        int CourseId { get; }
         DateTime Date { get; }
         ClassType ClassType { get; }
-        string CustomCaption { get; }
+        string? CustomCaption { get; }
+        public IEnumerable<IGrade> Grades { get; set; }
     }
 }

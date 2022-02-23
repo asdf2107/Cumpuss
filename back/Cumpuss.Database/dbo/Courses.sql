@@ -1,7 +1,8 @@
 ﻿CREATE TABLE [dbo].[Courses]
 (
 	[Id] INT NOT NULL PRIMARY KEY, 
-    [YearSemester] INT NOT NULL,
+    [Year] INT NOT NULL,
+    [FirstSemester] BIT NOT NULL,
     [SubjectId] INT NOT NULL, 
     [LecturerId] INT NOT NULL, 
     [PracticeTeacherId] INT NOT NULL, 

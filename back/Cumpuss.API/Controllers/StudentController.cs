@@ -1,7 +1,8 @@
-using AutoMapper;
-using Cumpuss.Application;
-using Cumpuss.Application.Student;
+using Cumpuss.API.Filters;
+using Cumpuss.Application.Managers;
+using Cumpuss.Application.Request;
 using Cumpuss.Domain.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -9,20 +10,16 @@ using System.Collections.Generic;
 namespace Cumpuss.Presentation.Controllers
 {
     [ApiController]
+    [Authorize]
+    [AddUsernameFromToken]
     [Route("[controller]")]
     public class StudentController : ControllerBase
     {
-        private readonly IMapper _Mapper;
-
-        public StudentController(IMapper mapper)
+        [HttpGet("grades")]
+        public IEnumerable<ICourse> GetCoursesWithGrades(int? year, bool? firstSemester)
         {
-            _Mapper = mapper;
-        }
-
-        [HttpGet("getgrades")]
-        public IEnumerable<IGrade> GetGrades(int studentId, int classId)
-        {
-            return new GradesManager(new RequestContext(HttpContext), _Mapper).GetGrades(studentId, classId);
+            var requestContext = new RequestContext(HttpContext);
+            return new CoursesManager(requestContext).GetCoursesWithGrades(requestContext.User.Id, year ?? DateTime.Today.Year, firstSemester ?? true);
         }
     }
 }

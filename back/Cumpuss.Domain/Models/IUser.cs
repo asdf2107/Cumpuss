@@ -2,10 +2,9 @@
 
 namespace Cumpuss.Domain.Models
 {
-    public interface IUser
+    public interface IUser : IEntity
     {
-        string Login { get; }
+        string Username { get; }
         UserType UserType { get; }
-        IPerson Face { get; }
     }
 }

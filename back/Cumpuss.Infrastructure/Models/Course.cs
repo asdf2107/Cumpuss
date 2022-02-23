@@ -12,7 +12,8 @@ namespace Cumpuss.Infrastructure.Models
         }
 
         public int Id { get; set; }
-        public int YearSemester { get; set; }
+        public int Year { get; set; }
+        public bool FirstSemester { get; set; }
         public int SubjectId { get; set; }
         public int LecturerId { get; set; }
         public int PracticeTeacherId { get; set; }

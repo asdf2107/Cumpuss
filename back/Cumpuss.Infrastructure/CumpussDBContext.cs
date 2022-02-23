@@ -189,12 +189,12 @@ namespace Cumpuss.Infrastructure
             {
                 entity.HasKey(e => e.Id);
 
-                entity.Property(e => e.Login)
+                entity.Property(e => e.Username)
                     .IsRequired()
                     .HasMaxLength(20)
                     .IsFixedLength(true);
 
-                entity.HasIndex(e => e.Login)
+                entity.HasIndex(e => e.Username)
                     .IsUnique();
 
                 entity.Property(e => e.PasswordHash)
@@ -202,11 +202,11 @@ namespace Cumpuss.Infrastructure
                     .HasMaxLength(255)
                     .IsFixedLength(true);
 
-                entity.HasOne(d => d.Face)
+                entity.HasOne(d => d.Person)
                     .WithMany(p => p.Users)
-                    .HasForeignKey(d => d.FaceId)
+                    .HasForeignKey(d => d.PersonId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_Users_ToFaces");
+                    .HasConstraintName("FK_Users_ToPersons");
             });
 
             OnModelCreatingPartial(modelBuilder);

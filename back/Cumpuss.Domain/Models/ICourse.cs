@@ -9,5 +9,6 @@ namespace Cumpuss.Domain.Models
         ISubject Subject { get; }
         ITeacher Lecturer { get; }
         ITeacher PracticeTeacher { get; }
+        IEnumerable<IClass> Classes { get; }
     }
 }
